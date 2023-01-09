@@ -65,8 +65,8 @@ res.redirect("login");
 const limiter = rateLimit({ windowMs: 15 * 60 * 1000, max: 10, message: "Too Many Login Attempts" });
 
 app.post("/login", urlencodedParser, limiter, (req, res) => {
-    if (req.body.users == username && req.body.passs == passs) {
-        const user = username;
+    if (req.body.users == "admin" && req.body.passs == "admin") {
+        const user = "admin";
         jwt.sign({ user }, JWT_SECRET, { expiresIn: "3600s" }, (err, token) => {
             res.cookie("auth", token);
             res.redirect("/flag");
